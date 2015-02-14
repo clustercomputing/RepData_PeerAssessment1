@@ -83,10 +83,12 @@ library(data.table)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
-```{r}
+```{r,results='hide'}
 average.steps.no.na<-no.mis.data[,"daytype":=weekdays(as.Date(date))]
 average.steps.no.na[,"WKvsWEN":=ifelse(grepl("^[S]",daytype),"weekend","weekday")]
 average.steps.no.na[,"avg.WKvsWEN.interval":=ave(steps),by=c("WKvsWEN","interval")]
-xyplot(avg.WKvsWEN.interval~interval|WKvsWEN,data=average.steps.no.na,type="l",main="Avg. number of steps: by(WKd vs WKend + interval)",ylab="Avg. number of steps")
+```
+```{r}
+xyplot(avg.WKvsWEN.interval~interval|WKvsWEN,data=average.steps.no.na,type="l",main="Avg. number of steps: by(WKd vs WKend + interval)",ylab="Avg. number of steps",layout=c(1,2))
 ```
 ## Thank you for your time reviewing my code

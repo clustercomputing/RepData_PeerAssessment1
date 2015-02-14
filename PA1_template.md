@@ -139,57 +139,12 @@ library(data.table)
 ```r
 average.steps.no.na<-no.mis.data[,"daytype":=weekdays(as.Date(date))]
 average.steps.no.na[,"WKvsWEN":=ifelse(grepl("^[S]",daytype),"weekend","weekday")]
-```
-
-```
-##        interval old.steps       date avg.steps     steps   daytype WKvsWEN
-##     1:        0        NA 2012-10-01  1.716981  1.716981    Monday weekday
-##     2:        0         0 2012-10-02  1.716981  0.000000   Tuesday weekday
-##     3:        0         0 2012-10-03  1.716981  0.000000 Wednesday weekday
-##     4:        0        47 2012-10-04  1.716981 47.000000  Thursday weekday
-##     5:        0         0 2012-10-05  1.716981  0.000000    Friday weekday
-##    ---                                                                    
-## 17564:     2355         0 2012-11-26  1.075472  0.000000    Monday weekday
-## 17565:     2355         0 2012-11-27  1.075472  0.000000   Tuesday weekday
-## 17566:     2355         0 2012-11-28  1.075472  0.000000 Wednesday weekday
-## 17567:     2355         0 2012-11-29  1.075472  0.000000  Thursday weekday
-## 17568:     2355        NA 2012-11-30  1.075472  1.075472    Friday weekday
-```
-
-```r
 average.steps.no.na[,"avg.WKvsWEN.interval":=ave(steps),by=c("WKvsWEN","interval")]
 ```
 
-```
-##        interval old.steps       date avg.steps     steps   daytype WKvsWEN
-##     1:        0        NA 2012-10-01  1.716981  1.716981    Monday weekday
-##     2:        0         0 2012-10-02  1.716981  0.000000   Tuesday weekday
-##     3:        0         0 2012-10-03  1.716981  0.000000 Wednesday weekday
-##     4:        0        47 2012-10-04  1.716981 47.000000  Thursday weekday
-##     5:        0         0 2012-10-05  1.716981  0.000000    Friday weekday
-##    ---                                                                    
-## 17564:     2355         0 2012-11-26  1.075472  0.000000    Monday weekday
-## 17565:     2355         0 2012-11-27  1.075472  0.000000   Tuesday weekday
-## 17566:     2355         0 2012-11-28  1.075472  0.000000 Wednesday weekday
-## 17567:     2355         0 2012-11-29  1.075472  0.000000  Thursday weekday
-## 17568:     2355        NA 2012-11-30  1.075472  1.075472    Friday weekday
-##        avg.WKvsWEN.interval
-##     1:             2.251153
-##     2:             2.251153
-##     3:             2.251153
-##     4:             2.251153
-##     5:             2.251153
-##    ---                     
-## 17564:             1.410063
-## 17565:             1.410063
-## 17566:             1.410063
-## 17567:             1.410063
-## 17568:             1.410063
-```
-
 ```r
-xyplot(avg.WKvsWEN.interval~interval|WKvsWEN,data=average.steps.no.na,type="l",main="Avg. number of steps: by(WKd vs WKend + interval)",ylab="Avg. number of steps")
+xyplot(avg.WKvsWEN.interval~interval|WKvsWEN,data=average.steps.no.na,type="l",main="Avg. number of steps: by(WKd vs WKend + interval)",ylab="Avg. number of steps",layout=c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
 ## Thank you for your time reviewing my code
